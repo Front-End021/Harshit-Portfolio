@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 180 100% 95%;
+
+    --card: 0 0% 6%;
+    --card-foreground: 180 100% 95%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 180 100% 95%;
+
+    --primary: 180 100% 50%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 120 100% 50%;
+    --secondary-foreground: 0 0% 4%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 180 100% 50%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 180 100% 20%;
+    --input: 0 0% 12%;
+    --ring: 180 100% 50%;
+
+    --radius: 0.5rem;
+
+    /* Custom cyber tokens */
+    --cyber-glow: 0 0 20px hsl(180 100% 50% / 0.5);
+    --date-glow: 0 0 12px hsl(var(--primary));
+    --cyber-glow-green: 0 0 20px hsl(120 100% 50% / 0.5);
+    --cyber-border: 1px solid hsl(180 100% 50% / 0.3);
+    --terminal-green: 120 100% 50%;
+    --terminal-cyan: 180 100% 50%;
+    --dark-surface: 0 0% 8%;
+    --darker-surface: 0 0% 5%;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 180 100% 95%;
+  }
+
+  /* Light theme — same cyber identity, light surfaces */
+  .light {
+    --background: 200 20% 97%;
+    --foreground: 210 20% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 20% 15%;
+
+    --primary: 185 90% 32%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 145 75% 30%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 200 16% 92%;
+    --muted-foreground: 210 10% 40%;
+
+    --accent: 185 90% 32%;
+    --accent-foreground: 0 0% 100%;
+
+    --border: 185 40% 80%;
+    --input: 200 16% 92%;
+    --ring: 185 90% 32%;
+
+    --cyber-glow: 0 2px 12px hsl(185 60% 30% / 0.18);
+    --date-glow: none;
+    --cyber-glow-green: 0 2px 12px hsl(145 50% 30% / 0.18);
+    --terminal-green: 145 75% 30%;
+    --terminal-cyan: 185 90% 32%;
+    --dark-surface: 200 20% 95%;
+    --darker-surface: 200 20% 92%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono;
+    font-family: 'JetBrains Mono', monospace;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.3);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  .cyber-card {
+    @apply relative bg-card border border-primary/20 rounded-lg overflow-hidden;
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.1);
+  }
+
+  .light .cyber-card {
+    box-shadow: 0 2px 10px hsl(210 20% 40% / 0.08);
+    border-color: hsl(var(--primary) / 0.18);
+  }
+
+  .light .hover-glow:hover {
+    box-shadow: 0 4px 18px hsl(185 60% 30% / 0.18);
+  }
+
+
+  .cyber-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary)), transparent);
+  }
+
+  .cyber-glow {
+    text-shadow: var(--cyber-glow);
+  }
+
+  .cyber-glow-green {
+    text-shadow: var(--cyber-glow-green);
+  }
+
+  .terminal-text {
+    @apply font-mono text-primary;
+  }
+
+  .scanlines {
+    position: relative;
+  }
+
+  .scanlines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(0 0% 0% / 0.03) 2px,
+      hsl(0 0% 0% / 0.03) 4px
+    );
+    pointer-events: none;
+  }
+
+  .matrix-bg {
+    background-image: 
+      linear-gradient(hsl(var(--primary) / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .typing-cursor::after {
+    content: '█';
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300;
+  }
+
+  .hover-glow:hover {
+    box-shadow: var(--cyber-glow);
+    border-color: hsl(var(--primary));
+  }
+
+  .gradient-border {
+    position: relative;
+    background: hsl(var(--card));
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(var(--primary)), transparent 50%, hsl(var(--secondary)));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(var(--primary) / 0.6);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-typing {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 3s steps(40, end);
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+}

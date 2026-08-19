@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harshit Bhati | Cybersecurity Portfolio</title>
+    <meta name="description" content="Cybersecurity portfolio of Harshit Bhati - penetration testing, VAPT, digital forensics, CTF player and Linux system administration." />
+    <meta name="author" content="Harshit Bhati" />
+
+    <meta property="og:title" content="Harshit Bhati | Cybersecurity Portfolio" />
+    <meta property="og:description" content="Cybersecurity portfolio of Harshit Bhati - penetration testing, VAPT, digital forensics, CTF player and Linux system administration." />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var theme = stored === 'light' || stored === 'dark'
+            ? stored
+            : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          document.documentElement.classList.add(theme);
+          document.documentElement.style.colorScheme = theme;
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
