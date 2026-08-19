@@ -28,4 +28,4 @@ Personal portfolio website of Harshit Bhati, showcasing my skills, projects, cer
 Clone the repository:
 
 ```bash
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/Front-End021/Harshit-Portfolio.git
